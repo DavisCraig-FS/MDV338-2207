@@ -163,16 +163,19 @@ class SignupViewController: UIViewController {
         
         // Firebase Sign in
         
-        DBManager.shared.userExists(with: email, completion: {exists in
-            guard !exists else {
-                // user exists
+        DBManager.shared.userExists(with: email, completion: { [weak self] exists in
+            guard let strongSelf = self else {
                 return
             }
             
-            FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password, completion: {[weak self] authResult, error in
-                guard let strongSelf = self else {
-                    return
-                }
+            guard !exists else {
+                // user exists
+                strongSelf.alertUserSigninError(message: "User email already exists.")
+                return
+            }
+            
+            FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password, completion: { authResult, error in
+               
                 guard authResult != nil, error == nil else {
                     print("Error creating user")
                     return
@@ -187,8 +190,8 @@ class SignupViewController: UIViewController {
        
     }
     
-    func alertUserSigninError(){
-        let alert = UIAlertController(title: "ERROR", message: "Enter all required information to create an account.", preferredStyle: .alert)
+    func alertUserSigninError(message: String = "Enter all required information to create an account."){
+        let alert = UIAlertController(title: "ERROR", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
         present(alert, animated: true)
     }
