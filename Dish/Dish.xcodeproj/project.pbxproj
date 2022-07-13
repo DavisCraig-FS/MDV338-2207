@@ -27,6 +27,7 @@
 		81F94BA47EBB566B15F8F85C /* Pods_Dish.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dish.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AFCB435BF0D367F133A43B4 /* Pods-Dish.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dish.debug.xcconfig"; path = "Target Support Files/Pods-Dish/Pods-Dish.debug.xcconfig"; sourceTree = "<group>"; };
 		A016DD90287B9EB4003DF6D2 /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
+		A016DD92287E4BB6003DF6D2 /* Dish.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Dish.entitlements; sourceTree = "<group>"; };
 		A0E6D3D82877A836006AB9C3 /* Dish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0E6D3DB2877A836006AB9C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A0E6D3DD2877A836006AB9C3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +84,7 @@
 		A0E6D3DA2877A836006AB9C3 /* Dish */ = {
 			isa = PBXGroup;
 			children = (
+				A016DD92287E4BB6003DF6D2 /* Dish.entitlements */,
 				A0E6D3EF2877AA01006AB9C3 /* GoogleService-Info.plist */,
 				A0E6D3F7287B0C89006AB9C3 /* Controllers */,
 				A0E6D3DB2877A836006AB9C3 /* AppDelegate.swift */,
@@ -394,6 +396,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Dish/Dish.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3NL9988S3V;
@@ -425,6 +428,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Dish/Dish.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3NL9988S3V;
