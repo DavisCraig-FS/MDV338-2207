@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		A016DD91287B9EB4003DF6D2 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A016DD90287B9EB4003DF6D2 /* DBManager.swift */; };
+		A016DD942880BB27003DF6D2 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = A016DD932880BB27003DF6D2 /* Recipe.swift */; };
+		A016DD972880BC2D003DF6D2 /* Results.swift in Sources */ = {isa = PBXBuildFile; fileRef = A016DD962880BC2D003DF6D2 /* Results.swift */; };
+		A016DD992880BC8E003DF6D2 /* Recipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A016DD982880BC8E003DF6D2 /* Recipes.swift */; };
+		A016DD9B28836920003DF6D2 /* RecipeDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A016DD9A28836920003DF6D2 /* RecipeDetailsViewController.swift */; };
+		A016DD9D28836935003DF6D2 /* IngredeintsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A016DD9C28836935003DF6D2 /* IngredeintsListViewController.swift */; };
 		A0E6D3DC2877A836006AB9C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E6D3DB2877A836006AB9C3 /* AppDelegate.swift */; };
 		A0E6D3DE2877A836006AB9C3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E6D3DD2877A836006AB9C3 /* SceneDelegate.swift */; };
 		A0E6D3E02877A836006AB9C3 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E6D3DF2877A836006AB9C3 /* HomeViewController.swift */; };
@@ -28,6 +33,11 @@
 		8AFCB435BF0D367F133A43B4 /* Pods-Dish.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dish.debug.xcconfig"; path = "Target Support Files/Pods-Dish/Pods-Dish.debug.xcconfig"; sourceTree = "<group>"; };
 		A016DD90287B9EB4003DF6D2 /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 		A016DD92287E4BB6003DF6D2 /* Dish.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Dish.entitlements; sourceTree = "<group>"; };
+		A016DD932880BB27003DF6D2 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
+		A016DD962880BC2D003DF6D2 /* Results.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Results.swift; sourceTree = "<group>"; };
+		A016DD982880BC8E003DF6D2 /* Recipes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipes.swift; sourceTree = "<group>"; };
+		A016DD9A28836920003DF6D2 /* RecipeDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailsViewController.swift; sourceTree = "<group>"; };
+		A016DD9C28836935003DF6D2 /* IngredeintsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredeintsListViewController.swift; sourceTree = "<group>"; };
 		A0E6D3D82877A836006AB9C3 /* Dish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0E6D3DB2877A836006AB9C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A0E6D3DD2877A836006AB9C3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +73,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		A016DD952880BBDD003DF6D2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A016DD932880BB27003DF6D2 /* Recipe.swift */,
+				A016DD962880BC2D003DF6D2 /* Results.swift */,
+				A016DD982880BC8E003DF6D2 /* Recipes.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		A0E6D3CF2877A836006AB9C3 = {
 			isa = PBXGroup;
 			children = (
@@ -84,6 +104,7 @@
 		A0E6D3DA2877A836006AB9C3 /* Dish */ = {
 			isa = PBXGroup;
 			children = (
+				A016DD952880BBDD003DF6D2 /* Models */,
 				A016DD92287E4BB6003DF6D2 /* Dish.entitlements */,
 				A0E6D3EF2877AA01006AB9C3 /* GoogleService-Info.plist */,
 				A0E6D3F7287B0C89006AB9C3 /* Controllers */,
@@ -105,6 +126,8 @@
 				A0E6D3F8287B0CD7006AB9C3 /* SignIn-Up */,
 				A0E6D3DF2877A836006AB9C3 /* HomeViewController.swift */,
 				A0E6D3F5287B0B94006AB9C3 /* ProfileViewController.swift */,
+				A016DD9A28836920003DF6D2 /* RecipeDetailsViewController.swift */,
+				A016DD9C28836935003DF6D2 /* IngredeintsListViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -247,8 +270,13 @@
 				A0E6D3F4287B0B3B006AB9C3 /* SignupViewController.swift in Sources */,
 				A0E6D3F2287B0B29006AB9C3 /* SigninViewController.swift in Sources */,
 				A016DD91287B9EB4003DF6D2 /* DBManager.swift in Sources */,
+				A016DD972880BC2D003DF6D2 /* Results.swift in Sources */,
+				A016DD9D28836935003DF6D2 /* IngredeintsListViewController.swift in Sources */,
 				A0E6D3E02877A836006AB9C3 /* HomeViewController.swift in Sources */,
+				A016DD992880BC8E003DF6D2 /* Recipes.swift in Sources */,
+				A016DD9B28836920003DF6D2 /* RecipeDetailsViewController.swift in Sources */,
 				A0E6D3DC2877A836006AB9C3 /* AppDelegate.swift in Sources */,
+				A016DD942880BB27003DF6D2 /* Recipe.swift in Sources */,
 				A0E6D3DE2877A836006AB9C3 /* SceneDelegate.swift in Sources */,
 				A0E6D3FA287B1712006AB9C3 /* Extensions.swift in Sources */,
 			);

@@ -134,7 +134,7 @@ class SigninViewController: UIViewController {
     }
     
     func alertUserSigninError(){
-        let alert = UIAlertController(title: "ERROR", message: "Enter all required information to sign in", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Sign-In Error", message: "Please enter all required information to sign in", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
         present(alert, animated: true)
     }
@@ -160,7 +160,7 @@ extension SigninViewController: UITextFieldDelegate{
 extension SigninViewController: LoginButtonDelegate {
     
     func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
-        // unoperational
+        // nonoperrational
     }
     
     func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
