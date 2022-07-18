@@ -38,7 +38,20 @@ class ProfileViewController: UIViewController {
         first.font = UIFont(name:"FontAwesomeBold",size: 16)
         return first
     }()
-    
+    private let lastLabel: UILabel = {
+        let last = UILabel()
+        last.text = "Last Name"
+        last.textColor = UIColor.black
+        last.font = UIFont(name:"FontAwesomeBold",size: 16)
+        return last
+    }()
+    private let emailLabel: UILabel = {
+        let email = UILabel()
+        email.text = "Email"
+        email.textColor = UIColor.black
+        email.font = UIFont(name:"FontAwesomeBold",size: 16)
+        return email
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,6 +60,8 @@ class ProfileViewController: UIViewController {
         view.addSubview(scrollView)
         scrollView.addSubview(imageView)
         scrollView.addSubview(firstLabel)
+        scrollView.addSubview(lastLabel)
+        scrollView.addSubview(emailLabel)
         
     }
     override func viewDidLayoutSubviews() {
@@ -59,6 +74,8 @@ class ProfileViewController: UIViewController {
         imageView.frame = CGRect(x: (scrollView.width - size)/2, y: 20, width: size, height: size)
         imageView.layer.cornerRadius = imageView.width/2.0
         firstLabel.frame = CGRect(x: 30, y: imageView.bottom+20, width: 52, height: 16)
+        lastLabel.frame = CGRect(x: 30, y: firstLabel.bottom+20, width: 52, height: 16)
+        emailLabel.frame = CGRect(x: 30, y: lastLabel.bottom+20, width: 52, height: 16)
     }
     
     @objc private func signoutButtonTapped(){

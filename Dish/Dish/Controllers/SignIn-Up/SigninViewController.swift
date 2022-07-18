@@ -85,14 +85,14 @@ class SigninViewController: UIViewController {
         emailField.delegate = self
         passwordField.delegate = self
         
-        fbLoginButton.delegate = self
+//        fbLoginButton.delegate = self
         // Add subview
         view.addSubview(scrollView)
         scrollView.addSubview(imageView)
         scrollView.addSubview(emailField)
         scrollView.addSubview(passwordField)
         scrollView.addSubview(signinButton)
-        scrollView.addSubview(fbLoginButton)
+//        scrollView.addSubview(fbLoginButton)
 
     }
   
@@ -104,8 +104,8 @@ class SigninViewController: UIViewController {
         emailField.frame = CGRect(x: 30, y: imageView.bottom+10, width: scrollView.width-60, height: 52)
         passwordField.frame = CGRect(x: 30, y: emailField.bottom+10, width: scrollView.width-60, height: 52)
         signinButton.frame = CGRect(x: 30, y: passwordField.bottom+10, width: scrollView.width-60, height: 52)
-        fbLoginButton.frame = CGRect(x: 30, y: signinButton.bottom+10, width: scrollView.width-60, height: 52)
-        fbLoginButton.frame.origin.y = signinButton.bottom+20
+//        fbLoginButton.frame = CGRect(x: 30, y: signinButton.bottom+10, width: scrollView.width-60, height: 52)
+//        fbLoginButton.frame.origin.y = signinButton.bottom+20
     }
     
     @objc private func signinButtonTapped(){
@@ -157,33 +157,33 @@ extension SigninViewController: UITextFieldDelegate{
     }
 }
 
-extension SigninViewController: LoginButtonDelegate {
-    
-    func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
-        // nonoperrational
-    }
-    
-    func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
-        guard let token = result?.token?.tokenString else {
-            print("Facebook Sign In failed.")
-            return
-        }
-        
-        let credential = FacebookAuthProvider.credential(withAccessToken: token)
-        
-        FirebaseAuth.Auth.auth().signIn(with: credential, completion: { [weak self] authResult, error in
-            
-            guard let strongSelf = self else {
-                return
-            }
-            guard authResult != nil, error == nil else {
-                if let error = error {
-                    print("Facebook credential sign in failed. \(error)")
-                }
-                return
-            }
-            print("Facebook sign in successful.")
-            strongSelf.navigationController?.dismiss(animated: true, completion: nil)
-        })
-    }
-}
+//extension SigninViewController: LoginButtonDelegate {
+//
+//    func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
+//        // nonoperrational
+//    }
+//
+//    func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
+//        guard let token = result?.token?.tokenString else {
+//            print("Facebook Sign In failed.")
+//            return
+//        }
+//
+//        let credential = FacebookAuthProvider.credential(withAccessToken: token)
+//
+//        FirebaseAuth.Auth.auth().signIn(with: credential, completion: { [weak self] authResult, error in
+//
+//            guard let strongSelf = self else {
+//                return
+//            }
+//            guard authResult != nil, error == nil else {
+//                if let error = error {
+//                    print("Facebook credential sign in failed. \(error)")
+//                }
+//                return
+//            }
+//            print("Facebook sign in successful.")
+//            strongSelf.navigationController?.dismiss(animated: true, completion: nil)
+//        })
+//    }
+//}
