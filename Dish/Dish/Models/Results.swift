@@ -9,5 +9,5 @@ import Foundation
 
 class Result: Codable{
     
-    let results: [Recipes]
+    let hits: [Recipes]
 }

@@ -13,6 +13,5 @@ class Recipe: Codable{
     let image: String
     let source: String
     let url: String
-    let healthLabels: [String]
     let ingredientLines: [String]
 }

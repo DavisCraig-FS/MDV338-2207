@@ -14,8 +14,8 @@ class HomeViewController: UIViewController {
     
     
     var data = [Recipes]()
-    let app_id = "b3c6ace0"
-    let app_key = "3c71f4ec5817e262c94c03100136eff3"
+    let app_id = "bf5fa51a"
+    let app_key = "a0c36c3b123243152c5f4f84d644178c"
     var selectedRecipe: Recipes?
     
     private let scrollView: UIScrollView = {
@@ -27,7 +27,7 @@ class HomeViewController: UIViewController {
     private let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "Preparing")
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.layer.masksToBounds = true
         return imageView
     }()
@@ -36,7 +36,7 @@ class HomeViewController: UIViewController {
         let field = UITextField()
         field.autocapitalizationType = .none
         field.autocorrectionType = .no
-        field.returnKeyType = .continue
+        field.returnKeyType = .search
         field.layer.cornerRadius = 12
         field.layer.borderWidth = 1
         field.layer.borderColor = UIColor.lightGray.cgColor
@@ -48,14 +48,29 @@ class HomeViewController: UIViewController {
         return field
     }()
     
+    private let searchButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Search", for: .normal)
+        button.backgroundColor = UIColor(red: 0.0, green: 0.6, blue: 0.1, alpha: 1.0)
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 12
+        button.layer.masksToBounds = true
+        button.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
+        return button
+    }()
+    
     private let tableView: UITableView = {
        let tableView = UITableView()
         tableView.register(RecipeTVCell.self, forCellReuseIdentifier: RecipeTVCell.identifier)
         return tableView
     }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Home"
+        
+        searchButton.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
+        
         tableView.dataSource = self
         tableView.delegate = self
         tableView.backgroundColor = .gray
@@ -63,16 +78,18 @@ class HomeViewController: UIViewController {
         scrollView.addSubview(imageView)
         scrollView.addSubview(searchField)
         scrollView.addSubview(tableView)
+        scrollView.addSubview(searchButton)
+//        tableView.reloadData()
         
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         scrollView.frame  = view.bounds
-        let size = scrollView.width/3
-        imageView.frame = CGRect(x: 0, y: 0, width: scrollView.width, height: size * 2)
+        imageView.frame = CGRect(x: 0, y: 0, width: scrollView.width, height: view.height/3)
         searchField.frame = CGRect(x: 30, y: 20, width: scrollView.width-60, height: 52)
         tableView.frame = CGRect(x: 0, y: imageView.bottom+10, width: scrollView.width, height: view.height/3)
+        searchButton.frame = CGRect(x: 150, y: searchField.bottom+10, width: scrollView.width-300, height: 39)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -82,10 +99,10 @@ class HomeViewController: UIViewController {
         
     }
     
-    //Alert
+    // Alert
     func doAlert(str: String){
         let alert = UIAlertController(title: "Alert", message: str, preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
     
@@ -94,6 +111,9 @@ class HomeViewController: UIViewController {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         searchRecipes()
         return true
+    }
+    @objc private func searchButtonTapped(){
+        searchRecipes()
     }
     func searchRecipes(){
            searchField.resignFirstResponder()
@@ -107,18 +127,19 @@ class HomeViewController: UIViewController {
            let q = searchWord.replacingOccurrences(of: " ", with: "%20")
            data.removeAll()
            
-           
-           let url = URL(string: "https://api.edamam.com/search?q=\(q)&app_id=\(app_id)&app_key=\(app_key)")
-           
+//    https://api.edamam.com/search?q=cheese&app_id=bf5fa51a&app_key=a0c36c3b123243152c5f4f84d644178c
+           let url = URL(string:"https://api.edamam.com/search?q=\(q)&app_id=\(app_id)&app_key=\(app_key)")
+
            URLSession.shared.dataTask(with:url!, completionHandler: {data, response,error in
                guard let data = data, error == nil  else{
                    return
+                   
                }
-                            
                //convert data
                var result: Result?
                do{
                    result = try JSONDecoder().decode(Result.self, from: data)
+                   
                }
                catch{
                    print("error")
@@ -126,19 +147,20 @@ class HomeViewController: UIViewController {
                guard let finalResult = result else{
                     return
                }
-                   print(finalResult)
-               //update our 
-               let newRecipes = finalResult.results
+                   
+               //update
+               let newRecipes = finalResult.hits
                self.data.append(contentsOf: newRecipes)
                
                //update table
                DispatchQueue.main.async {
                    self.tableView.reloadData()
                }
+               print(finalResult)
            }).resume()
        }
 
-    func checkCharInField(str:String) -> Bool{
+    func checkCharInField(str: String) -> Bool{
         do{
             let regex = try NSRegularExpression(pattern: ".*[^A-Za-z ].*", options: [])
             if regex.firstMatch(in: str, options: [], range: NSMakeRange(0, str.count)) != nil {
@@ -165,10 +187,11 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return data.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: RecipeTVCell.identifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: RecipeTVCell.identifier, for: indexPath) as! RecipeTVCell
+        cell.configure(with: data[indexPath.row])
         cell.textLabel?.textAlignment = .center
         cell.textLabel?.textColor = .red
         return cell

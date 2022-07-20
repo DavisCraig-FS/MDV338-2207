@@ -28,8 +28,8 @@ class RecipeTVCell: UITableViewCell {
     
     private let sourceLabel: UILabel = {
         let sourceLabel = UILabel()
-        sourceLabel.textColor = .black
-        sourceLabel.font = .systemFont(ofSize: 18, weight: .bold)
+        sourceLabel.textColor = .gray
+        sourceLabel.font = .systemFont(ofSize: 18, weight: .regular)
         sourceLabel.text = "Source"
         return sourceLabel
     }()
@@ -40,9 +40,19 @@ class RecipeTVCell: UITableViewCell {
         contentView.addSubview(nameLabel)
         contentView.addSubview(sourceLabel)
     }
-
+    
     required init?(coder: NSCoder){
         fatalError("init(coder) has not been implemented")
+    }
+    
+    func configure(with model: Recipes){
+        self.nameLabel.text = model.recipe.label
+        self.sourceLabel.text = model.recipe.source
+        let url = model.recipe.image
+        
+        if let data = try? Data(contentsOf: URL(string:url)!){
+            self.image.image = UIImage(data: data)
+        }
     }
     
     override func layoutSubviews() {
@@ -51,7 +61,7 @@ class RecipeTVCell: UITableViewCell {
         let imageWidth = contentView.frame.size.height-6
         
         image.frame = CGRect(x: 5, y: 5, width: contentView.frame.size.height-10, height: contentView.frame.size.height-10)
-        nameLabel.frame = CGRect(x: 10+image.frame.size.width, y: 0, width: contentView.frame.size.width - 10 - image.frame.size.width - imageWidth, height: contentView.frame.size.height)
-        sourceLabel.frame = CGRect(x: 10+nameLabel.frame.size.width, y: 0, width: contentView.frame.size.width - 10 - image.frame.size.width - imageWidth, height: contentView.frame.size.height)
+        nameLabel.frame = CGRect(x: 10+image.frame.size.width, y: -20, width: contentView.frame.size.width - 10 - image.frame.size.width, height: contentView.frame.size.height)
+        sourceLabel.frame = CGRect(x: 10+image.frame.size.width, y: nameLabel.bottom+40, width: contentView.frame.size.width - 10 - image.frame.size.width - imageWidth, height: contentView.frame.size.height)
     }
 }
