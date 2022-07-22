@@ -33,12 +33,21 @@ class RecipeTVCell: UITableViewCell {
         sourceLabel.text = "Source"
         return sourceLabel
     }()
+    
+    private let addButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "text.badge.plus"), for: .normal)
+        button.tintColor = UIColor(red: 0.0, green: 0.6, blue: 0.1, alpha: 1.0)
+        button.layer.masksToBounds = true
+        return button
+    }()
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?){
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.backgroundColor = .lightGray
+        contentView.backgroundColor = UIColor(red: 0.0, green: 0.5, blue: 0.0, alpha: 0.4)
         contentView.addSubview(image)
         contentView.addSubview(nameLabel)
         contentView.addSubview(sourceLabel)
+        contentView.addSubview(addButton)
     }
     
     required init?(coder: NSCoder){
@@ -61,7 +70,9 @@ class RecipeTVCell: UITableViewCell {
         let imageWidth = contentView.frame.size.height-6
         
         image.frame = CGRect(x: 5, y: 5, width: contentView.frame.size.height-10, height: contentView.frame.size.height-10)
-        nameLabel.frame = CGRect(x: 10+image.frame.size.width, y: -20, width: contentView.frame.size.width - 10 - image.frame.size.width, height: contentView.frame.size.height)
-        sourceLabel.frame = CGRect(x: 10+image.frame.size.width, y: nameLabel.bottom+40, width: contentView.frame.size.width - 10 - image.frame.size.width - imageWidth, height: contentView.frame.size.height)
+        image.layer.cornerRadius = image.width/3.0
+        nameLabel.frame = CGRect(x: 20+image.frame.size.width, y: -20, width: contentView.frame.size.width - 10 - image.frame.size.width - imageWidth, height: contentView.frame.size.height)
+        sourceLabel.frame = CGRect(x: 20+image.frame.size.width, y: nameLabel.bottom+40, width: contentView.frame.size.width - 10 - image.frame.size.width - imageWidth, height: contentView.frame.size.height)
+        addButton.frame = CGRect(x: image.frame.size.width + nameLabel.frame.size.width + 30, y: image.frame.size.height/2.5, width: 20, height: 20)
     }
 }

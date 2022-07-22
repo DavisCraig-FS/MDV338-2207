@@ -11,7 +11,7 @@
         <!--Recipes-->
         <scene sceneID="6sy-hc-ULF">
             <objects>
-                <viewController id="1lK-Ve-UEa" customClass="RecipeDetailsViewController" customModule="Dish" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="1lK-Ve-UEa" customClass="RecipesViewController" customModule="Dish" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1j8-Q3-Kgc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -19,10 +19,13 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="Recipes" id="bpA-hF-HFB"/>
+                    <connections>
+                        <segue destination="TPo-bB-93b" kind="show" identifier="recipeDetails" id="zYe-LU-nSk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jJt-EJ-8VW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-530.43478260869574" y="851.78571428571422"/>
+            <point key="canvasLocation" x="1135" y="852"/>
         </scene>
         <!--Home-->
         <scene sceneID="tne-QT-ifu">
@@ -35,10 +38,13 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="7n4-Qr-XxV"/>
+                    <connections>
+                        <segue destination="TPo-bB-93b" kind="show" identifier="recipeDetails" id="ATI-nh-YMw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="316" y="852"/>
+            <point key="canvasLocation" x="-530" y="852"/>
         </scene>
         <!--Profile-->
         <scene sceneID="QW8-11-ePo">
@@ -54,7 +60,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ibc-oT-aXk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1142" y="848"/>
+            <point key="canvasLocation" x="316" y="852"/>
         </scene>
         <!--Ingredients List-->
         <scene sceneID="GYL-1c-HFL">
@@ -92,6 +98,22 @@
             </objects>
             <point key="canvasLocation" x="707" y="-689"/>
         </scene>
+        <!--Recipe Details View Controller-->
+        <scene sceneID="HHY-6q-puk">
+            <objects>
+                <viewController id="TPo-bB-93b" customClass="RecipeDetailsViewController" customModule="Dish" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3eB-pV-Ffz">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="VOH-zb-kvM"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="eYn-xT-Mmo"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FhR-Q0-tdZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="316" y="1679"/>
+        </scene>
         <!--Profile-->
         <scene sceneID="QDZ-CZ-g4l">
             <objects>
@@ -107,7 +129,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NF0-yj-jFn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1143" y="104"/>
+            <point key="canvasLocation" x="316" y="104"/>
         </scene>
         <!--Ingredients-->
         <scene sceneID="LzO-3b-VK4">
@@ -141,7 +163,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UiH-aC-eHR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-528" y="104"/>
+            <point key="canvasLocation" x="1136" y="104"/>
         </scene>
         <!--Home-->
         <scene sceneID="ZuE-AL-GeO">
@@ -160,9 +182,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VfI-19-OCU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="317" y="105"/>
+            <point key="canvasLocation" x="-530" y="104"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="zYe-LU-nSk"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="fork.knife" catalog="system" width="92" height="128"/>
         <image name="house" catalog="system" width="128" height="106"/>
